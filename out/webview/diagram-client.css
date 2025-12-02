@@ -1,0 +1,321 @@
+/* ../../node_modules/sprotty/css/sprotty.css */
+.sprotty {
+  padding: 0px;
+  font-family:
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+}
+.sprotty-root {
+  position: relative;
+}
+.sprotty-hidden {
+  display: block;
+  position: absolute;
+  width: 0px;
+  height: 0px;
+}
+.sprotty-popup {
+  font-family:
+    "Helvetica Neue",
+    Helvetica,
+    Arial,
+    sans-serif;
+  position: absolute;
+  background: white;
+  border-radius: 5px;
+  border: 1px solid;
+  max-width: 400px;
+  min-width: 100px;
+}
+.sprotty-popup > div {
+  margin: 10px;
+}
+.sprotty-popup-closed {
+  display: none;
+}
+.sprotty-projection-bar.horizontal {
+  position: absolute;
+  width: 100%;
+  height: 20px;
+  left: 0;
+  bottom: 0;
+}
+.sprotty-projection-bar.vertical {
+  position: absolute;
+  width: 20px;
+  height: 100%;
+  right: 0;
+  top: 0;
+}
+.sprotty-viewport {
+  z-index: 1;
+  border-style: solid;
+  border-width: 2px;
+}
+.sprotty-projection-bar.horizontal .sprotty-projection,
+.sprotty-projection-bar.horizontal .sprotty-viewport {
+  position: absolute;
+  height: 100%;
+  top: 0;
+}
+.sprotty-projection-bar.vertical .sprotty-projection,
+.sprotty-projection-bar.vertical .sprotty-viewport {
+  position: absolute;
+  width: 100%;
+  left: 0;
+}
+@keyframes spin {
+  100% {
+    transform: rotate(360deg);
+  }
+}
+.animation-spin {
+  animation: spin 1.5s linear infinite;
+}
+.sprotty-missing {
+  stroke-width: 1;
+  stroke: #f00;
+  fill: #f00;
+  font-size: 14pt;
+  text-anchor: start;
+}
+.sprotty-junction {
+  stroke: #000;
+  stroke-width: 1;
+  fill: #fff;
+}
+
+/* src/extension/webview/diagram-client.css */
+:root {
+  --oml-bg-color: var(--vscode-editor-background, #1e1e1e);
+  --oml-foreground-color: var(--vscode-editor-foreground, #e0e0e0);
+  --oml-border-color: var(--vscode-panel-border, #454545);
+  --oml-node-fill: var(--vscode-editor-background, #1e1e1e);
+  --oml-node-fill-hover: var(--vscode-editor-wordHighlightBackground, #264f78);
+  --oml-node-fill-select: var(--vscode-editor-selectionBackground, #264f78);
+  --oml-node-stroke: var(--vscode-editorLineNumber-foreground, #858585);
+  --oml-node-stroke-hover: var(--vscode-textLink-activeForeground, #00b7ff);
+  --oml-node-stroke-select: var(--vscode-focusBorder, #007acc);
+  --oml-edge-stroke: var(--vscode-editorLineNumber-foreground, #858585);
+  --oml-edge-stroke-hover: var(--vscode-textLink-activeForeground, #00b7ff);
+  --oml-edge-stroke-select: var(--vscode-focusBorder, #007acc);
+  --oml-label-color: var(--vscode-editor-foreground, #e0e0e0);
+  --oml-types-color: var(--vscode-symbolIcon-classForeground);
+}
+html,
+body {
+  width: 100%;
+  height: 100%;
+  margin: 0;
+  padding: 0;
+  overflow: hidden;
+  background: var(--oml-bg-color);
+  color: var(--oml-foreground-color);
+  font-family:
+    -apple-system,
+    BlinkMacSystemFont,
+    "Segoe UI",
+    Roboto,
+    Oxygen,
+    Ubuntu,
+    Cantarell,
+    sans-serif;
+}
+#sprotty {
+  width: 100%;
+  height: 100%;
+  display: block;
+  position: relative;
+  box-sizing: border-box;
+  background: var(--oml-bg-color);
+  border: 1px solid var(--oml-border-color);
+  border-radius: 3px;
+  overflow: hidden;
+  touch-action: none;
+  pointer-events: auto;
+}
+#sprotty::before {
+  content: "";
+  position: absolute;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  width: 1px;
+  background: var(--oml-border-color);
+  pointer-events: none;
+  z-index: 0;
+}
+svg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  z-index: 1;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+.sprotty-graph,
+.sprotty-viewport {
+  background: var(--oml-bg-color);
+  pointer-events: auto;
+}
+.sprotty-html {
+  color: var(--oml-foreground-color);
+}
+g.node\:rect > rect,
+g.rect > rect,
+rect.sprotty-node {
+  fill: var(--oml-node-fill);
+  stroke: var(--oml-node-stroke);
+  stroke-width: 2px;
+  stroke-linejoin: round;
+  rx: 6;
+  ry: 6;
+  paint-order: stroke fill markers;
+  shape-rendering: geometricPrecision;
+  transition: stroke 0.1s, fill 0.1s;
+}
+g.node\:rect:hover > rect,
+g.sprotty-node:hover > rect,
+g[id] > rect:hover {
+  fill: var(--oml-node-fill-hover);
+  stroke: var(--oml-node-stroke-hover);
+  stroke-width: 2.5px;
+}
+g.node\:rect.selected > rect,
+g.sprotty-node.selected > rect,
+g.selected > rect {
+  fill: var(--oml-node-fill-select);
+  stroke: var(--oml-node-stroke-select);
+  stroke-width: 3px;
+  filter: drop-shadow(0 0 4px var(--oml-node-stroke-select)) drop-shadow(0 0 6px var(--oml-node-stroke-select));
+}
+text.oml-types-label {
+  font-size: 13px;
+  font-family:
+    "Consolas",
+    "Monaco",
+    "Courier New",
+    monospace;
+  font-weight: 500;
+  fill: var(--oml-types-color);
+}
+line.oml-compartment-line {
+  stroke: var(--oml-node-stroke);
+  stroke-width: 1px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+  shape-rendering: geometricPrecision;
+}
+g.sprotty-node text.oml-property-label,
+text.oml-property-label {
+  text-anchor: start;
+  dominant-baseline: text-before-edge;
+  font-size: 12px;
+  fill: var(--oml-label-color);
+  stroke: none;
+  pointer-events: none;
+}
+.sprotty-label,
+text.sprotty-label {
+  font-size: 13px;
+  font-family:
+    "Consolas",
+    "Monaco",
+    "Courier New",
+    monospace;
+  font-weight: 500;
+  fill: var(--oml-label-color);
+  stroke: none;
+  text-anchor: middle;
+  dominant-baseline: text-before-edge;
+  pointer-events: none;
+  user-select: none;
+  -webkit-user-select: none;
+  -moz-user-select: none;
+  -ms-user-select: none;
+}
+g.sprotty-edge text.sprotty-label {
+  fill: var(--oml-label-color);
+}
+g.sprotty-edge > polyline,
+g.sprotty-edge > path,
+g.sprotty-edge > line {
+  fill: none;
+  stroke: var(--oml-edge-stroke);
+  stroke-width: 1px;
+  stroke-opacity: 1;
+}
+g.sprotty-edge:hover > polyline,
+g.sprotty-edge:hover > path,
+g.sprotty-edge:hover > line {
+  stroke: var(--oml-edge-stroke-hover);
+  stroke-width: 1.5px;
+}
+g.sprotty-edge.selected > polyline,
+g.sprotty-edge.selected > path,
+g.sprotty-edge.selected > line {
+  stroke: var(--oml-edge-stroke-select);
+  stroke-width: 2px;
+  filter: drop-shadow(0 0 4px var(--oml-edge-stroke-select)) drop-shadow(0 0 6px var(--oml-edge-stroke-select));
+}
+marker path {
+  stroke-width: 1px;
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+marker#oml-open-arrow path,
+marker#oml-open-arrow-hover path,
+marker#oml-open-arrow-selected path {
+  stroke-linejoin: round;
+  stroke-linecap: round;
+}
+marker#oml-open-arrow path {
+  stroke: var(--oml-edge-stroke);
+  fill: none;
+}
+marker#oml-open-arrow-hover path {
+  stroke: var(--oml-edge-stroke-hover);
+  stroke-width: 1.5px;
+  fill: none;
+}
+marker#oml-open-arrow-selected path {
+  stroke: var(--oml-edge-stroke-select);
+  stroke-width: 2px;
+  fill: none;
+}
+marker#oml-closed-triangle path {
+  stroke: var(--oml-edge-stroke);
+  fill: var(--oml-bg-color);
+}
+marker#oml-closed-triangle-hover path {
+  stroke: var(--oml-edge-stroke-hover);
+  stroke-width: 1.5px;
+  fill: var(--oml-bg-color);
+}
+marker#oml-closed-triangle-selected path {
+  stroke: var(--oml-edge-stroke-select);
+  stroke-width: 2px;
+  fill: var(--oml-bg-color);
+}
+marker#oml-equivalence-triangle path {
+  stroke: var(--oml-edge-stroke);
+  fill: var(--oml-bg-color);
+}
+marker#oml-equivalence-triangle-hover path {
+  stroke: var(--oml-edge-stroke-hover);
+  stroke-width: 1.5px;
+  fill: var(--oml-bg-color);
+}
+marker#oml-equivalence-triangle-selected path {
+  stroke: var(--oml-edge-stroke-select);
+  stroke-width: 1.5px;
+  fill: var(--oml-bg-color);
+}
+text.sprotty-edge-dangling {
+  display: none;
+}
+/*# sourceMappingURL=diagram-client.css.map */
