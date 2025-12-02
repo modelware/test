@@ -1,0 +1,103 @@
+{
+    "name": "oml-code",
+    "displayName": "OML Code",
+    "description": "OML language server support for VS Code",
+    "version": "0.0.1",
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/fireforce6/oml-code.git"
+    },
+    "publisher": "modelware",
+    "engines": {
+        "vscode": "^1.75.0"
+    },
+    "categories": [
+        "Programming Languages"
+    ],
+  
+    "contributes": {
+        "languages": [
+            {
+                "id": "oml",
+                "aliases": [
+                    "OML",
+                    "oml"
+                ],
+                "extensions": [
+                    ".oml"
+                ],
+                "configuration": "./language-configuration.json"
+            }
+        ],
+        "grammars": [
+            {
+                "language": "oml",
+                "scopeName": "source.oml",
+                "path": "syntaxes/oml.tmLanguage.json"
+            }
+        ],
+        "commands": [
+            {
+                "command": "oml.openDiagram",
+                "title": "Open in Diagram",
+                "category": "OML"
+            },
+            {
+                "command": "modelware.login",
+                "title": "Sign In",
+                "category": "Modelware Cloud"
+            },
+            {
+                "command": "modelware.logout",
+                "title": "Sign Out",
+                "category": "Modelware Cloud"
+            }
+        ],
+        "menus": {
+            "editor/context": [
+                {
+                    "command": "oml.openDiagram",
+                    "when": "resourceLangId == oml",
+                    "group": "navigation@1"
+                }
+            ]
+        },
+        "uriHandlers": [
+            {
+                "scheme": "vscode"
+            }
+        ]
+    },
+    "main": "./out/extension/main.cjs",
+    "browser": "./out/extension/main-browser.js",
+    "extensionKind": [
+        "ui",
+        "workspace"
+    ],
+    "scripts": {
+        "clean": "shx rm -fr *.tsbuildinfo out syntaxes",
+        "vscode:prepublish": "npm run build",
+        "build:prepare": "shx mkdir -p ./syntaxes/ && shx cp -f ../language/syntaxes/oml.tmLanguage.json ./syntaxes/oml.tmLanguage.json",
+        "build": "npm run build:prepare && tsc -b tsconfig.json && node esbuild.mjs",
+        "build:clean": "npm run clean && npm run build",
+        "watch": "npm run build:prepare && concurrently -n tsc,esbuild -c blue,yellow \"tsc -b tsconfig.json --watch\" \"node esbuild.mjs --watch\""
+    },
+    "dependencies": {
+        "elkjs": "^0.11.0",
+        "inversify": "^6.0.1",
+        "oml-language": "0.0.1",
+        "reflect-metadata": "^0.2.2",
+        "sprotty": "^1.2.0",
+        "sprotty-elk": "^1.4.0",
+        "vscode-languageclient": "~9.0.1",
+        "vscode-languageserver": "~9.0.1"
+    },
+    "devDependencies": {
+        "@types/vscode": "~1.67.0",
+        "concurrently": "~8.2.1",
+        "esbuild": "~0.25.5"
+    },
+    "vsce": {
+        "dependencies": false
+    }
+}

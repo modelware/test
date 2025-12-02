@@ -1,0 +1,19 @@
+.vscode/*
+.vscode-test-web/*
+!.vscode/extensions.json
+!.vscode/launch.json
+!.vscode/tasks.json
+node_modules/
+dist/
+out/
+**/src/generated
+syntaxes/
+.DS_Store
+
+# Keep most generated/packaged syntaxes ignored, but allow the language package's
+# manual TextMate grammar to be tracked so VS Code doesn't treat it as a generated
+# (ignored) file and dim it in the explorer.
+!packages/language/syntaxes/
+!packages/language/syntaxes/oml.tmLanguage.json
+*.tsbuildinfo
+*.vsix
